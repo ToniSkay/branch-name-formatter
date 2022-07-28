@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Branch Name Formatter</title>
+    <script>
+        function format() {
+            const replacedValue = document.querySelector('.formatter-input').value
+                .replaceAll(' ', '-')
+                .replaceAll(/]|"|'|\[|\|/g, '')
+                .replaceAll('--', '-')
+                .toLocaleLowerCase()
+
+            document.querySelector('.formatter-result').textContent = replacedValue;
+            navigator.clipboard.writeText(replacedValue).then(() => console.log('Text copied to clipboard'))
+        }
+    </script>
+    <style>
+        .formatter-input {
+            height: 50px;
+            width: 500px;
+            font-size: 30px;
+        }
+
+        .container {
+            margin: 0;
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .formatter-container {
+            display: flex;
+            height: 85px;
+            width: 800px;
+        }
+
+        .formatter-button {
+            margin-left: 10px;
+            height: 55px;
+            color: white;
+            background-color: green;
+            cursor: pointer;
+        }
+
+        .formatter-result {
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="formatter-container">
+            <input class="formatter-input" type="text">
+
+            <button class="formatter-button" onclick="format()">Format</button>
+        </div>
+
+        <span class="formatter-result"></span>
+    </div>
+
+</body>
+</html>
